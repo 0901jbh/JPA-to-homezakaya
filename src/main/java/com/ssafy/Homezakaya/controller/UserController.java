@@ -39,48 +39,33 @@ public class UserController {
     // 회원 정보 등록
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody UserDto user) {
-        Map<String, Object> resultMap = new HashMap<>();
-//        if (userService.getUser(user.getUserId()) != null) {
-//            resultMap.put("message", "중복된 id입니다.");
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT); // 409
-//        }
-
         user.setMannerPoint(5);
         user.setEvaluatedCount(1);
         user.setRefreshToken("eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QifQ.eyJleHAiOjE2Nzc3MzcyMDJ9.dOd0MQ5EZtdSQJIFMl003ujjq_AAoHzfI01sDdK0scc");
         UserDto userDto = userService.createUser(user);
 
-        //resultMap.put("message", SUCCESS);
-        //return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CREATED);
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
     // 회원 정보 조회
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getUser(@PathVariable String userId) {
-//        Map<String, Object> resultMap = new HashMap<>();
-//        if (userService.getUser(userId) == null) {
-//            resultMap.put("message", "존재하지 않는 id입니다.");
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<UserDto>(userService.getUser(userId), HttpStatus.OK);
-        System.out.println("AAAAAAAAAA , " + userId);
 
         UserDto userDto = userService.getUser(userId);
 
         return ResponseEntity.status(HttpStatus.OK).body(userDto);
     }
 
-//    // id 중복확인
-//    @GetMapping("/id/{userId}")
-//    public ResponseEntity<?> checkId(@PathVariable String userId) {
-//        Map<String, Object> resultMap = new HashMap<>();
-//        if (userService.getUser(userId) != null) {
-//            resultMap.put("message", "중복된 id입니다.");
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT); // 409
-//        }
-//        resultMap.put("message", SUCCESS);
-//        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);  // 200
-//    }
+    // id 중복확인
+    @GetMapping("/id/{userId}")
+    public ResponseEntity<?> checkId(@PathVariable String userId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        if (userService.getUser(userId) != null) {
+            resultMap.put("message", "중복된 id입니다.");
+            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT); // 409
+        }
+        resultMap.put("message", SUCCESS);
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);  // 200
+    }
 //
 //    // nickname 중복확인
 //    @GetMapping("/nickname/{nickname}")
