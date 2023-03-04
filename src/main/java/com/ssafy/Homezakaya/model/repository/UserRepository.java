@@ -18,9 +18,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserId(String userId);
 
 
-    @Query(value = "select userId from user"
-            + "where userId = :userId"
+//    <select id="checkNickname" parameterType="String" resultType="UserDto">
+//    SELECT *
+//    FROM user
+//    WHERE nickname = #{nickname}
+//    </select>
+
+    @Query(value = "select *"
+            + " from user"
+            + " where nickname = :nickname"
             , nativeQuery = true)
-    boolean isUniqueNickName(@Param("userId")String userId);
+    User isUniqueNickName(@Param("nickname")String nickname);
     //findby로 될 듯
 }

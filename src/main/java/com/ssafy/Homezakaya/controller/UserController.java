@@ -58,26 +58,36 @@ public class UserController {
     // id 중복확인
     @GetMapping("/id/{userId}")
     public ResponseEntity<?> checkId(@PathVariable String userId) {
-        Map<String, Object> resultMap = new HashMap<>();
-        if (userService.getUser(userId) != null) {
-            resultMap.put("message", "중복된 id입니다.");
-            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT); // 409
-        }
-        resultMap.put("message", SUCCESS);
-        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);  // 200
-    }
-//
-//    // nickname 중복확인
-//    @GetMapping("/nickname/{nickname}")
-//    public ResponseEntity<?> checkNickName(@PathVariable String nickname) {
 //        Map<String, Object> resultMap = new HashMap<>();
-//        if (userService.checkNickname(nickname) != null) {
-//            resultMap.put("message", "중복된 닉네임입니다.");
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT);
+//        if (userService.getUser(userId) != null) {
+//            resultMap.put("message", "중복된 id입니다.");
+//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT); // 409
 //        }
 //        resultMap.put("message", SUCCESS);
-//        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
-//    }
+//        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);  // 200
+
+        //UserDto userDto = userService.getUser(userId);
+        //System.out.println("======" + userDto.getUserId());
+        Map<String, Object> resultMap = new HashMap<>();
+        if(userService.getUser(userId) == null){
+            resultMap.put("message", FAIL);
+            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.BAD_REQUEST);
+        }
+        resultMap.put("message", SUCCESS);
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+    }
+//
+    // nickname 중복확인
+    @GetMapping("/nickname/{nickname}")
+    public ResponseEntity<?> checkNickName(@PathVariable String nickname) {
+        Map<String, Object> resultMap = new HashMap<>();
+        if (userService.checkNickname(nickname) == false) {
+            resultMap.put("message", "중복된 닉네임입니다.");
+            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.CONFLICT);
+        }
+        resultMap.put("message", SUCCESS);
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+    }
 //
 //
 //

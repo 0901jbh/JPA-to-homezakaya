@@ -17,7 +17,7 @@ public interface UserDao {
     User getUser(String userId);
 //
 //    // nickname 중복체크용 전체 회원 목록 조회
-//    User checkNickname(String nickname);
+    Boolean checkNickname(String nickname);
 //
 //    // 회원 정보 수정
 //    int updateUser(User user);

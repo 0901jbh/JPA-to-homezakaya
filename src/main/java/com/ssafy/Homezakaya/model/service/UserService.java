@@ -14,7 +14,7 @@ public interface UserService {
     UserDto getUser(String userId);
 //
 //    // 닉네임 중복체크
-//    UserDto checkNickname(String nickname);
+    Boolean checkNickname(String nickname);
 //
 //    // 회원 정보 수정
 //    boolean modifyUser(UserDto user);

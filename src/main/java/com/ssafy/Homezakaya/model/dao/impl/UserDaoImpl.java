@@ -33,10 +33,16 @@ public class UserDaoImpl  implements UserDao {
         return user;
     }
 
-//    @Override
-//    public User checkNickname(String nickname) {
-//        return null;
-//    }
+    @Override
+    public Boolean checkNickname(String nickname) {
+        System.out.println("before DAOIMPL QUERY");
+        User user = userRepository.isUniqueNickName(nickname);
+        System.out.println("after DAOIMPL QUERY");
+       if(user == null)
+           return true;
+       return false;
+
+    }
 //
 //    @Override
 //    public int updateUser(User user) {

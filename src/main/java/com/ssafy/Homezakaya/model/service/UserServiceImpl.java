@@ -86,9 +86,9 @@ public class UserServiceImpl implements UserService {
     }
 //
 //    @Override
-//    public UserDto checkNickname(String nickname) {
-//        return userDao.checkNickname(nickname);
-//    }
+    public Boolean checkNickname(String nickname) {
+        return userDao.checkNickname(nickname);
+    }
 //
 //    // 수정 가능 정보 :  비밀번호, 이메일, 알콜 도수, 닉네임
 //    @Override
