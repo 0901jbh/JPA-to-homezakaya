@@ -92,17 +92,17 @@ public class UserController {
 //
 //
 //    // 회원 정보 수정
-//    @PutMapping
-//    public ResponseEntity<?> modifyUser(@RequestBody UserDto user) {
-//        Map<String, Object> resultMap = new HashMap<>();
-//        if (userService.modifyUser(user)) {
-//            resultMap.put("message", SUCCESS);
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
-//        } else {
-//            resultMap.put("message", FAIL);
-//            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping
+    public ResponseEntity<?> updateUser(@RequestBody UserDto userDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        if (userService.updateUser(userDto)) {
+            resultMap.put("message", SUCCESS);
+            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+        } else {
+            resultMap.put("message", FAIL);
+            return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.NOT_FOUND);
+        }
+    }
 //
 //    // 회원 정보 삭제
 //    @DeleteMapping("/{userId}")

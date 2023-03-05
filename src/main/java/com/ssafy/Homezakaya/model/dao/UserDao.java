@@ -20,7 +20,7 @@ public interface UserDao {
     Boolean checkNickname(String nickname);
 //
 //    // 회원 정보 수정
-//    int updateUser(User user);
+    Boolean updateUser(User user);
 //
 //    // 회원 정보 삭제 - 기존 비밀번호 입력
 //    int deleteUser(String userId);

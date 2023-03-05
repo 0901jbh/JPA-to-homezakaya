@@ -44,10 +44,16 @@ public class UserDaoImpl  implements UserDao {
 
     }
 //
-//    @Override
-//    public int updateUser(User user) {
-//        return 0;
-//    }
+    @Override
+    public Boolean updateUser(User user) {
+        System.out.println("before updateUser");
+       // User user = userRepository.updateUser(user);
+       // User updatedUser = userRepository.upUser(user);
+        System.out.println("after updateUser");
+//        if(updatedUser == null)
+//            return true;
+        return false;
+    }
 //
 //    @Override
 //    public int deleteUser(String userId) {

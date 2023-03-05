@@ -17,7 +17,7 @@ public interface UserService {
     Boolean checkNickname(String nickname);
 //
 //    // 회원 정보 수정
-//    boolean modifyUser(UserDto user);
+    Boolean updateUser(UserDto userDto);
 //
 //    // 회원 정보 삭제
 //    boolean removeUser(String userId);

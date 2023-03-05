@@ -91,10 +91,24 @@ public class UserServiceImpl implements UserService {
     }
 //
 //    // 수정 가능 정보 :  비밀번호, 이메일, 알콜 도수, 닉네임
-//    @Override
-//    public boolean modifyUser(UserDto user) {
-//        return userDao.updateUser(user) == 1;
-//    }
+    @Override
+    public Boolean updateUser(UserDto userDto) {
+        User user = new User();
+        user.setUserId(userDto.getUserId());
+        user.setPassword(userDto.getPassword());
+        user.setNickname(userDto.getNickname());
+
+        user.setEmail(userDto.getEmail());
+        user.setMannerPoint(userDto.getMannerPoint());
+        user.setEvaluatedCount(userDto.getEvaluatedCount());
+
+        user.setAlcoholPoint(userDto.getAlcoholPoint());
+        user.setRefreshToken(userDto.getRefreshToken());
+        user.setState(userDto.getState());
+
+        return userDao.updateUser(user);
+
+    }
 //
 //    @Override
 //    public boolean removeUser(String userId) {
